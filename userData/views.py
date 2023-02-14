@@ -68,7 +68,10 @@ class UserInfo(APIView):
 
 class Skills(APIView):
   
+  # get the aggregate skills data
   def get(self, request):
+
+    # this is used to read in the parameters, for max and min filters
     try:
       minFreq = int(request.GET['min_frequency'])
     except:
@@ -78,6 +81,7 @@ class Skills(APIView):
     except:
       maxFreq = float('inf')
 
+    # get all the skills and aggregate them
     skills = Skill.objects.all()
     aggregate = {}
     for skillObj in skills:
@@ -86,6 +90,7 @@ class Skills(APIView):
       else:
         aggregate[skillObj.name] = 0
 
+    # create the returned data from the min and max values
     returnData = {}
     for key in aggregate:
       if aggregate[key] <= maxFreq and aggregate[key] >= minFreq:
