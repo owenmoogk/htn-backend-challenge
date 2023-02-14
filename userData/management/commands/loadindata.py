@@ -3,6 +3,7 @@ from userData.models import User, Skill
 from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
+    # command to load json data into the model
     help = 'Load data from JSON file into User model'
 
     def handle(self, *args, **options):
