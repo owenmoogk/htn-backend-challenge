@@ -10,10 +10,13 @@ From the original JSON file, the first problem that needed solving was convertin
 
 ## User API Endpoints
 
-##### Get All User Data
+### Get All User Data
 **URL**: `/users/`
+
 **Method**: GET
+
 **Response**: A JSON object with each user data is returned with HTTP status code 200.
+
 **Example Response**:
 ```
 [
@@ -38,10 +41,13 @@ From the original JSON file, the first problem that needed solving was convertin
 ```
 
 
-##### Single User Data 
-**URL**: `/user/int:user_id/` 
+### Single User Data 
+**URL**: `/user/int:user_id/`
+
 **Method**: GET
+
 **Response**: A JSON object containing the single user's data, with HTTP status code 200.
+
 **Example Response**:
 ```
 {
@@ -67,8 +73,11 @@ From the original JSON file, the first problem that needed solving was convertin
 ```
 
 **Alternate Method**: PUT 
+
 **Request Data**: A JSON object containing any user data to be modified, including `name`, `company`, `email`, `phone`, or any skills. This endpoint will modify any skills that have been added, by updating the `rating` value for the `skill`. Any new skills will be added to the user's skills. Any skills that are not mentioned in the request data will not be modified.
+
 **Response**: On successful modification, a JSON object with the updated user data is returned with HTTP status code 200.
+
 **Example Request**:
 ```
 {
@@ -83,11 +92,15 @@ From the original JSON file, the first problem that needed solving was convertin
 ```
 This request will modify the phone number on the specified user, and update their skills to include `Vue.js`. If they were already skilled in `Vue.js`, their rating will be updated to `3`.
 
-##### Get Aggregate Skills Data
+### Get Aggregate Skills Data
 **URL**: `/skills/` 
+
 **Method**: GET
+
 **Description**: This endpoint aggregates all of the user's skills, and returns the frequency of all the skills.
-**Response**: A JSON object with the aggregate skills data is returned with HTTP status code 200. If there is no
+
+**Response**: A JSON object with the aggregate skills data is returned with HTTP status code 200.
+
 **Example Response**:
 ```
 {
@@ -109,10 +122,13 @@ Additionally, I have also added endpoints for the registration of users. At the 
 
 The documentation for the aforementioned endpoints is as follows.
 
-##### Modify User Social Media Links: 
+### Modify User Social Media Links: 
 **URL**: `/social-media/int:user_id/` 
+
 **Method**: GET
+
 **Response**: A JSON object with the social media links of the specified user is returned with HTTP status code 200.
+
 **Example Response**:
 ```
 {
@@ -124,24 +140,33 @@ The documentation for the aforementioned endpoints is as follows.
 ```
 
 **Alternate Method**: PUT
+
 **Request Data**: The request data should contain an object with the social media to be modified.
+
 **Example Request Data**:
 ```{"instagram": "https://www.instagram.com/maxverstappen1/"}```
 **Response**: A JSON object that contains all the updated social media for the user.
 
-##### Check In User
+### Check In User
 **URL**: `/registration/check-in/int:user_id/`
+
 **Method**: GET
+
 **Response**: A JSON object, containing the boolean status of the user regarding their check in (true for have checked in, false for have not checked in).
 
 **Alternate Method**: PUT
+
 **Request Data**: None Required
+
 **Response**: A JSON object, with the status of the user regarding their check in. If they have already checked in, the return status is `HTTP_208_ALREADY_REPORTED`, otherwise `HTTP_200_OK`.
 
-##### Create User
+### Create User
 **URL**: `/registration/create-user/`
+
 **Method**: POST
+
 **Request Data**: JSON Object containing: `name`, `company`, `email`, `phone`, and any `skill` objects. 
+
 **Example Request**:
 ```
 {
@@ -162,5 +187,7 @@ The documentation for the aforementioned endpoints is as follows.
   }
 ```
 **Response**: On successful creation, a JSON object with the newly created user's ID is returned with `HTTP_201_CREATED`. If there is an error, or any missing data, an error message is returned with `HTTP_400_BAD_REQUEST`.
+
 **Example Response**: `{"userId": 1007}`
+
 **Note**: This method does not modify any social media. This is intentional as it would be required for user authentication for a user to modify their own user data, and the user object would need to be created first for this authentication to take place. In other words, the user object should be created before social media should be modified.
