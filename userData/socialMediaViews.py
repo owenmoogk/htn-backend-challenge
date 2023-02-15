@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from .models import *
 
-class SocialMedia(APIView):
+class SocialMediaView(APIView):
 
   # return a single users data in a json
   def get(self, request, user_id):

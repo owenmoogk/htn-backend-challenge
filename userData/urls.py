@@ -8,5 +8,5 @@ urlpatterns = [
     path('users/', UserList.as_view()),
     path('user/<int:user_id>/', UserInfo.as_view()),
     path(r'skills/', Skills.as_view()),
-    path('socialMedia/<int:user_id>/', SocialMedia.as_view())
+    path('social-media/<int:user_id>/', SocialMediaView.as_view())
 ]
