@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 
     'userData',
     'userData.management.commands',
+    'registration',
 
     'rest_framework'
 ]

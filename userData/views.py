@@ -1,10 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
-from django.forms.models import model_to_dict
-from django.core import serializers
-import json
 from .models import *
 
 # the function turns the slightly messier skill data into a rating dictionary's

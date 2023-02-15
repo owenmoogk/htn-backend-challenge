@@ -9,7 +9,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         # Open the JSON file and load the data
-        with open('userData/fixtures/input.json', 'r') as file:
+        with open('userData/management/commands/input.json', 'r') as file:
             data = json.load(file)
 
         # Loop through each user in the data and create a User object
