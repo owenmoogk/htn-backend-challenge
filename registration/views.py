@@ -31,7 +31,7 @@ class CreateUser(APIView):
 
       # save and return
       user.save()
-      return Response({"userId": user.id}, status=status.HTTP_200_OK)
+      return Response({"userId": user.id}, status=status.HTTP_201_CREATED)
     
     # if the data was not entered correctly
     except:
@@ -43,15 +43,15 @@ class CheckInUser(APIView):
   def get(self, request, user_id):
     user = User.objects.get(id = user_id)
     if user.checkedIn:
-      return Response({"status": "Checked In"}, status=status.HTTP_200_OK)
-    return Response({"status": "Not Checked In"}, status=status.HTTP_200_OK)
+      return Response({"status": True}, status=status.HTTP_200_OK)
+    return Response({"status": False}, status=status.HTTP_200_OK)
 
   # check the users in
   def put(self, request, user_id):
     user = User.objects.get(id = user_id)
     if user.checkedIn:
-      return Response({"status": "Already Checked In"}, status=status.HTTP_208_ALREADY_REPORTED)
+      return Response({"status": True}, status=status.HTTP_208_ALREADY_REPORTED)
 
     user.checkedIn = True
     user.save()
-    return Response({"status": "Success"}, status=status.HTTP_200_OK)
+    return Response({"status": True}, status=status.HTTP_200_OK)
