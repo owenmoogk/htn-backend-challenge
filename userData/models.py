@@ -42,3 +42,14 @@ def userSerializer(user):
         'phone': user.phone,
         'skills': [skillSerializer(skill) for skill in user.skills.all()] 
     }
+
+def socialMediaSerializer(socialMedia):
+    return {
+        'linkedin': socialMedia.linkedin, 
+        'thingiverse': socialMedia.thingiverse,
+        'discord': socialMedia.discord,
+        'instagram': socialMedia.instagram,
+        'github': socialMedia.github, 
+        'twitter': socialMedia.twitter,
+        'facebook': socialMedia.facebook
+    }
